@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Roberto Ballesteros <heartub.api@gmail.com>
+ * @package CartCloneGraphQl - Clone a new guest cart in Magento 2
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Heartub_CartCloneGraphQl" setup_version="1.0.0">
+        <sequence>
+            <module name="Magento_Sales"/>
+            <module name="Magento_Quote"/>
+            <module name="Magento_QuoteGraphQl"/>
+        </sequence>
+    </module>
+</config>
