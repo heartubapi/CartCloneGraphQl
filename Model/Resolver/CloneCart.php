@@ -16,15 +16,18 @@ use Magento\Framework\GraphQl\Query\Resolver\ContextInterface;
 use Magento\Framework\GraphQl\Query\Resolver\Value;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
+use Magento\QuoteGraphQl\Model\Cart\GetCartForUser;
 use Heartub\CartCloneGraphQl\Service\Guest\NewCart;
 
 class CloneCart implements ResolverInterface
 {
     /**
      * @param NewCart $newCart
+     * @param GetCartForUser $getCartForUser
      */
     public function __construct(
-        private readonly NewCart $newCart
+        private readonly NewCart $newCart,
+        private readonly GetCartForUser $getCartForUser
     ) {
     }
 
@@ -40,12 +43,13 @@ class CloneCart implements ResolverInterface
         $maskedCartId = $args['cart_id'];
         $currentUserId = $context->getUserId();
         $storeId = (int)$context->getExtensionAttributes()->getStore()->getId();
+        $currentCart = $this->getCartForUser->execute($maskedCartId, $currentUserId, $storeId);
+        $maskedQuoteIdFromClone = $this->newCart->createEmptyCartForGuest();
 
-        $maskedQuoteId = $this->newCart->createEmptyCartForGuest();
 
         try {
             $argsCartId = [
-                'cartId' => $maskedCartId
+                'cartId' => $maskedQuoteIdFromClone
             ];
 
         } catch (\Exception $exception) {
@@ -54,6 +58,6 @@ class CloneCart implements ResolverInterface
             );
         }
 
-        return '';
+        return $maskedQuoteIdFromClone;
     }
 }
