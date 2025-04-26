@@ -49,7 +49,6 @@ class CloneCart implements ResolverInterface
         $currentCart = $this->getCartForUser->execute($maskedCartId, $currentUserId, $storeId);
         $maskedQuoteIdFromClone = $this->newCart->createEmptyCartForGuest();
 
-
         try {
             $argsCartId = [
                 'cartId' => $maskedQuoteIdFromClone
