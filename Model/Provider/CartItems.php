@@ -46,7 +46,7 @@ class CartItems
      * @return array
      * @throws LocalizedException
      */
-    public function getItemData(): array
+    public function getItemsData(): array
     {
         if (!isset($this->currentCart)) {
             throw new LocalizedException(__('"model" value should be specified'));

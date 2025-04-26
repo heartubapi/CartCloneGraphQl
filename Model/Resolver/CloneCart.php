@@ -18,15 +18,18 @@ use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\QuoteGraphQl\Model\Cart\GetCartForUser;
 use Heartub\CartCloneGraphQl\Service\Guest\NewCart;
+use Heartub\CartCloneGraphQl\Service\Guest\AddProducts;
 
 class CloneCart implements ResolverInterface
 {
     /**
      * @param NewCart $newCart
+     * @param AddProducts $addProducts
      * @param GetCartForUser $getCartForUser
      */
     public function __construct(
         private readonly NewCart $newCart,
+        private readonly AddProducts $addProducts,
         private readonly GetCartForUser $getCartForUser
     ) {
     }
@@ -51,6 +54,9 @@ class CloneCart implements ResolverInterface
             $argsCartId = [
                 'cartId' => $maskedQuoteIdFromClone
             ];
+            $this->addProducts->setContext($context)->setArgs($argsCartId)
+                ->setCurrentCart($currentCart)
+                ->setProductsOnNewCart();
 
         } catch (\Exception $exception) {
             throw new GraphQlNoSuchEntityException(
