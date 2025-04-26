@@ -1,2 +1,6 @@
 # @author Roberto Ballesteros <heartub.api@gmail.com>
 # @package CartCloneGraphQl - Clone a new guest cart in Magento 2
+
+type Mutation {
+    cloneCart(cart_id: String! @doc(description: "The hash of an existing cart.")): String @resolver(class: "Heartub\\CartCloneGraphQl\\Model\\Resolver\\CloneCart") @doc(description: "It will return the hash of the new guest duplicate cart")
+}
