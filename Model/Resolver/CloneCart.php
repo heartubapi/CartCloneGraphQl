@@ -22,6 +22,7 @@ use Heartub\CartCloneGraphQl\Service\Guest\AddProducts;
 use Heartub\CartCloneGraphQl\Service\Guest\ShippingAddress;
 use Heartub\CartCloneGraphQl\Service\Guest\BillingAddress;
 use Heartub\CartCloneGraphQl\Service\Guest\ShippingMethods;
+use Heartub\CartCloneGraphQl\Service\Guest\Coupon;
 
 class CloneCart implements ResolverInterface
 {
@@ -31,6 +32,7 @@ class CloneCart implements ResolverInterface
      * @param ShippingAddress $setShippingAddress
      * @param BillingAddress $setBillingAddress
      * @param ShippingMethods $setShippingMethods
+     * @param Coupon $setCoupons
      * @param GetCartForUser $getCartForUser
      */
     public function __construct(
@@ -39,6 +41,7 @@ class CloneCart implements ResolverInterface
         private readonly ShippingAddress $setShippingAddress,
         private readonly BillingAddress $setBillingAddress,
         private readonly ShippingMethods $setShippingMethods,
+        private readonly Coupon $setCoupons,
         private readonly GetCartForUser $getCartForUser
     ) {
     }
@@ -79,6 +82,8 @@ class CloneCart implements ResolverInterface
             $this->setShippingMethods->setContext($context)->setArgs($shippingCartId)->setCurrentCart($currentCart)
                 ->buildByShippingAddress()
                 ->setMethodsOnCart();
+            $this->setCoupons->setContext($context)->setArgs($shippingCartId)->setCurrentCart($currentCart)
+                ->applyCoupons();
 
         } catch (\Exception $exception) {
             throw new GraphQlNoSuchEntityException(
