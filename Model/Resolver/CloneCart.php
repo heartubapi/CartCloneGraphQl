@@ -20,6 +20,7 @@ use Magento\QuoteGraphQl\Model\Cart\GetCartForUser;
 use Heartub\CartCloneGraphQl\Service\Guest\NewCart;
 use Heartub\CartCloneGraphQl\Service\Guest\AddProducts;
 use Heartub\CartCloneGraphQl\Service\Guest\ShippingAddress;
+use Heartub\CartCloneGraphQl\Service\Guest\BillingAddress;
 
 class CloneCart implements ResolverInterface
 {
@@ -27,12 +28,14 @@ class CloneCart implements ResolverInterface
      * @param NewCart $newCart
      * @param AddProducts $addProducts
      * @param ShippingAddress $setShippingAddress
+     * @param BillingAddress $setBillingAddress
      * @param GetCartForUser $getCartForUser
      */
     public function __construct(
         private readonly NewCart $newCart,
         private readonly AddProducts $addProducts,
         private readonly ShippingAddress $setShippingAddress,
+        private readonly BillingAddress $setBillingAddress,
         private readonly GetCartForUser $getCartForUser
     ) {
     }
@@ -67,6 +70,9 @@ class CloneCart implements ResolverInterface
             $this->setShippingAddress->setContext($context)->setArgs($shippingCartId)->setCurrentCart($currentCart)
                 ->buildByShippingAddress()
                 ->setShippingAddress();
+            $this->setBillingAddress->setContext($context)->setArgs($shippingCartId)->setCurrentCart($currentCart)
+                ->buildByBillingAddress()
+                ->setBillingAddress();
 
         } catch (\Exception $exception) {
             throw new GraphQlNoSuchEntityException(

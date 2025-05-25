@@ -145,6 +145,9 @@ class ShippingAddress
     public function checkShippingAddresses(): array
     {
         $addressesData = [];
+        if ($this->currentCart->getIsVirtual()) {
+            return $addressesData;
+        }
         $shippingAddresses = $this->currentCart->getAllShippingAddresses();
         if (count($shippingAddresses)) {
             foreach ($shippingAddresses as $shippingAddress) {
