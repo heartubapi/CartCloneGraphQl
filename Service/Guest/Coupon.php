@@ -62,7 +62,7 @@ class Coupon
             }
 
             try {
-                $this->multiCouponManagement->append((int) $cart->getId(), $couponCode);
+                $this->multiCouponManagement->append((int) $cart->getId(), [$couponCode]);
             } catch (NoSuchEntityException $e) {
                 $message = $e->getMessage();
                 if (preg_match('/The "\d+" Cart doesn\'t contain products/', $message)) {
