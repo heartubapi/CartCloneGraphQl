@@ -50,7 +50,7 @@ class AddProducts
      * @param ProductInterface|null $product
      * @param QuoteMutexInterface $quoteMutex
      * @param Quote|null $currentCart
-     * @param $context
+     * @param ContextInterface|null $context
      * @param array|null $args
      * @param float|null $qty
      * @param array|null $itemData
@@ -63,7 +63,7 @@ class AddProducts
         private ?ProductInterface $product,
         private QuoteMutexInterface $quoteMutex,
         private ?Quote $currentCart,
-        private $context,
+        private ?ContextInterface $context,
         private ?array $args,
         private ?float $qty,
         private ?array $itemData
@@ -72,6 +72,8 @@ class AddProducts
     }
 
     /**
+     * Copy product items from the current cart to the new cloned cart
+     *
      * @return $this
      * @throws \Magento\Framework\Exception\LocalizedException
      */
@@ -94,6 +96,8 @@ class AddProducts
     }
 
     /**
+     * Build product information to add by product type
+     *
      * @return $this
      */
     public function buildByProductType(): self
@@ -114,6 +118,8 @@ class AddProducts
     }
 
     /**
+     * Retrieve parameters for simple product requests
+     *
      * @return array[]
      */
     private function simpleProduct(): array
@@ -125,6 +131,8 @@ class AddProducts
     }
 
     /**
+     * Retrieve parameters for configurable product requests
+     *
      * @return array
      */
     private function configurableProduct(): array
@@ -137,6 +145,8 @@ class AddProducts
     }
 
     /**
+     * Add a new product to the cloned cart
+     *
      * @return array|null
      */
     public function addProduct(): ?array
@@ -149,7 +159,7 @@ class AddProducts
     }
 
     /**
-     * Run the resolver.
+     * Execute the add-to-cart function
      *
      * @param ContextInterface $context
      * @param array|null $args
@@ -189,6 +199,8 @@ class AddProducts
     }
 
     /**
+     * Retrieve the current cart
+     *
      * @return Quote|null
      */
     public function getCurrentCart(): ?Quote
@@ -197,6 +209,8 @@ class AddProducts
     }
 
     /**
+     * Set the current cart
+     *
      * @param Quote|null $currentCart
      * @return AddProducts
      */
@@ -207,6 +221,8 @@ class AddProducts
     }
 
     /**
+     * Retrieve values from the resolver context
+     *
      * @return ContextInterface|null
      */
     public function getContext(): ?ContextInterface
@@ -215,6 +231,8 @@ class AddProducts
     }
 
     /**
+     * Set values from the resolver context
+     *
      * @param ContextInterface|null $context
      * @return $this
      */
@@ -225,6 +243,8 @@ class AddProducts
     }
 
     /**
+     * Retrieve argument data from the resolver
+     *
      * @return array|null
      */
     public function getArgs(): ?array
@@ -233,6 +253,8 @@ class AddProducts
     }
 
     /**
+     * Set argument data coming in the resolver
+     *
      * @param array|null $args
      * @return AddProducts
      */
@@ -243,6 +265,8 @@ class AddProducts
     }
 
     /**
+     * Retrieve the quantity of the current item
+     *
      * @return float|null
      */
     public function getQty(): ?float
@@ -251,6 +275,8 @@ class AddProducts
     }
 
     /**
+     * Set the quantity for the current item
+     *
      * @param float|null $qty
      * @return AddProducts
      */
@@ -261,6 +287,8 @@ class AddProducts
     }
 
     /**
+     * Retrieve data for the current item
+     *
      * @return array|null
      */
     public function getItemData(): ?array
@@ -269,6 +297,8 @@ class AddProducts
     }
 
     /**
+     * Set data for the current item in the current cart
+     *
      * @param array|null $itemData
      * @return AddProducts
      */
@@ -279,6 +309,8 @@ class AddProducts
     }
 
     /**
+     * Retrieve the product
+     *
      * @return ProductInterface|null
      */
     public function getProduct(): ?ProductInterface
@@ -287,6 +319,8 @@ class AddProducts
     }
 
     /**
+     * Set the product
+     *
      * @param ProductInterface|null $product
      * @return AddProducts
      */

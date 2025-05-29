@@ -29,7 +29,7 @@ class ShippingAddress
      * @param ValidateAddressFromSchema $validateAddressFromSchema
      * @param Quote|null $currentCart
      * @param array|null $args
-     * @param $context
+     * @param ContextInterface|null $context
      */
     public function __construct(
         private readonly GetCartForUser $getCartForUser,
@@ -39,11 +39,13 @@ class ShippingAddress
         private readonly ValidateAddressFromSchema $validateAddressFromSchema,
         private ?Quote $currentCart,
         private ?array $args,
-        private $context
+        private ?ContextInterface $context
     ) {
     }
 
     /**
+     * Set the shipping address from the current cart to the cloned cart
+     *
      * @return array[]
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\GraphQl\Exception\GraphQlAuthorizationException
@@ -69,6 +71,8 @@ class ShippingAddress
     }
 
     /**
+     * Construct the new shipping address from the current cart
+     *
      * @return $this
      */
     public function buildByShippingAddress(): self
@@ -117,6 +121,8 @@ class ShippingAddress
     }
 
     /**
+     * Retrieve the region code from the current cart
+     *
      * @param Address $cartShippingAddress
      * @return string
      */
@@ -130,6 +136,8 @@ class ShippingAddress
     }
 
     /**
+     * Retrieve the street data from the current cart
+     *
      * @param Address $cartShippingAddress
      * @return array|string[]
      */
@@ -140,6 +148,8 @@ class ShippingAddress
     }
 
     /**
+     * Validate the shipping address of the current cart
+     *
      * @return array
      */
     public function checkShippingAddresses(): array
@@ -163,6 +173,8 @@ class ShippingAddress
     }
 
     /**
+     * Retrieve the current cart
+     *
      * @return Quote|null
      */
     public function getCurrentCart(): ?Quote
@@ -171,6 +183,8 @@ class ShippingAddress
     }
 
     /**
+     * Set the current cart
+     *
      * @param Quote|null $currentCart
      * @return ShippingAddress
      */
@@ -181,6 +195,8 @@ class ShippingAddress
     }
 
     /**
+     * Retrieve argument data from the resolver
+     *
      * @return array|null
      */
     public function getArgs(): ?array
@@ -189,6 +205,8 @@ class ShippingAddress
     }
 
     /**
+     * Set argument data coming in the resolver
+     *
      * @param array|null $args
      * @return ShippingAddress
      */
@@ -199,6 +217,8 @@ class ShippingAddress
     }
 
     /**
+     * Retrieve values from the resolver context
+     *
      * @return ContextInterface|null
      */
     public function getContext(): ?ContextInterface
@@ -207,6 +227,8 @@ class ShippingAddress
     }
 
     /**
+     * Set values from the resolver context
+     *
      * @param ContextInterface|null $context
      * @return $this
      */

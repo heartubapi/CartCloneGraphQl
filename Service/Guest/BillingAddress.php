@@ -27,7 +27,7 @@ class BillingAddress
      * @param SetBillingAddressOnCartModel $setBillingAddressOnCart
      * @param Quote|null $currentCart
      * @param array|null $args
-     * @param $context
+     * @param ContextInterface|null $context
      */
     public function __construct(
         private readonly ExtractQuoteAddressData $extractQuoteAddressData,
@@ -37,11 +37,13 @@ class BillingAddress
         private readonly SetBillingAddressOnCartModel $setBillingAddressOnCart,
         private ?Quote $currentCart,
         private ?array $args,
-        private $context
+        private ?ContextInterface $context
     ) {
     }
 
     /**
+     * Construct the billing address from the current cart
+     *
      * @return $this
      */
     public function buildByBillingAddress(): self
@@ -87,6 +89,8 @@ class BillingAddress
     }
 
     /**
+     * Retrieve the "same as shipping" flag from the current cart
+     *
      * @param array|null $cartBillingAddressData
      * @return bool
      */
@@ -103,6 +107,8 @@ class BillingAddress
     }
 
     /**
+     * Verify the validity of the billing address
+     *
      * @return array|null
      */
     public function checkBillingAddresses(): ?array
@@ -116,6 +122,8 @@ class BillingAddress
     }
 
     /**
+     * Set a new billing address for the cloned cart
+     *
      * @return array[]
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\GraphQl\Exception\GraphQlAuthorizationException
@@ -141,6 +149,8 @@ class BillingAddress
     }
 
     /**
+     * Retrieve the current cart
+     *
      * @return Quote|null
      */
     public function getCurrentCart(): ?Quote
@@ -149,6 +159,8 @@ class BillingAddress
     }
 
     /**
+     * Set the current cart
+     *
      * @param Quote|null $currentCart
      * @return BillingAddress
      */
@@ -159,6 +171,8 @@ class BillingAddress
     }
 
     /**
+     * Retrieve argument data from the resolver
+     *
      * @return array|null
      */
     public function getArgs(): ?array
@@ -167,6 +181,8 @@ class BillingAddress
     }
 
     /**
+     * Set argument data coming in the resolver
+     *
      * @param array|null $args
      * @return BillingAddress
      */
@@ -177,6 +193,8 @@ class BillingAddress
     }
 
     /**
+     * Retrieve values from the resolver context
+     *
      * @return ContextInterface|null
      */
     public function getContext(): ?ContextInterface
@@ -185,6 +203,8 @@ class BillingAddress
     }
 
     /**
+     * Set values from the resolver context
+     *
      * @param ContextInterface|null $context
      * @return $this
      */

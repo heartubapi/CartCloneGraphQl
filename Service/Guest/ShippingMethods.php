@@ -30,7 +30,7 @@ class ShippingMethods
      * @param ShippingAddress $addressesOnCart
      * @param Quote|null $currentCart
      * @param array|null $args
-     * @param $context
+     * @param ContextInterface|null $context
      */
     public function __construct(
         private readonly ShippingMethodConverter $shippingMethodConverter,
@@ -40,11 +40,13 @@ class ShippingMethods
         private readonly ShippingAddress $addressesOnCart,
         private ?Quote $currentCart,
         private ?array $args,
-        private $context
+        private ?ContextInterface $context
     ) {
     }
 
     /**
+     * Retrieve the selected shipping method from the current cart's shipping address
+     *
      * @return $this
      * @throws LocalizedException
      */
@@ -73,6 +75,8 @@ class ShippingMethods
     }
 
     /**
+     * Set the shipping methods from the current cart to the cloned cart
+     *
      * @return \Magento\Quote\Model\Quote[][]
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\GraphQl\Exception\GraphQlAuthenticationException
@@ -100,6 +104,8 @@ class ShippingMethods
     }
 
     /**
+     * Retrieve the shipping methods to be cloned
+     *
      * @param array|null $addressArray
      * @return array|null
      * @throws LocalizedException
@@ -150,6 +156,8 @@ class ShippingMethods
     }
 
     /**
+     * Retrieve the current cart
+     *
      * @return Quote|null
      */
     public function getCurrentCart(): ?Quote
@@ -158,6 +166,8 @@ class ShippingMethods
     }
 
     /**
+     * Set the current cart
+     *
      * @param Quote|null $currentCart
      * @return ShippingMethods
      */
@@ -168,6 +178,8 @@ class ShippingMethods
     }
 
     /**
+     * Retrieve argument data from the resolver
+     *
      * @return array|null
      */
     public function getArgs(): ?array
@@ -176,6 +188,8 @@ class ShippingMethods
     }
 
     /**
+     * Set argument data coming in the resolver
+     *
      * @param array|null $args
      * @return ShippingMethods
      */
@@ -186,6 +200,8 @@ class ShippingMethods
     }
 
     /**
+     * Retrieve values from the resolver context
+     *
      * @return ContextInterface|null
      */
     public function getContext(): ?ContextInterface
@@ -194,6 +210,8 @@ class ShippingMethods
     }
 
     /**
+     * Set values from the resolver context
+     *
      * @param ContextInterface|null $context
      * @return $this
      */
