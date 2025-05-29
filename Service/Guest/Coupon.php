@@ -26,7 +26,7 @@ class Coupon
      * @param GetCartForUser $getCartForUser
      * @param Quote|null $currentCart
      * @param array|null $args
-     * @param $context
+     * @param ContextInterface|null $context
      */
     public function __construct(
         private readonly CouponManagementInterface $couponManagement,
@@ -34,11 +34,13 @@ class Coupon
         private readonly GetCartForUser $getCartForUser,
         private ?Quote $currentCart,
         private ?array $args,
-        private $context
+        private ?ContextInterface $context
     ) {
     }
 
     /**
+     * Apply discount coupons from the current cart to the cloned cart
+     *
      * @return array[]
      * @throws GraphQlNoSuchEntityException
      * @throws NoSuchEntityException
@@ -74,7 +76,6 @@ class Coupon
             }
         }
 
-
         return [
             'cart' => [
                 'model' => $cart,
@@ -83,6 +84,8 @@ class Coupon
     }
 
     /**
+     * Retrieve all applied coupons from the current cart
+     *
      * @return array|null
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
@@ -98,6 +101,8 @@ class Coupon
     }
 
     /**
+     * Retrieve the current cart
+     *
      * @return Quote|null
      */
     public function getCurrentCart(): ?Quote
@@ -106,6 +111,8 @@ class Coupon
     }
 
     /**
+     * Set the current cart
+     *
      * @param Quote|null $currentCart
      * @return Coupon
      */
@@ -116,6 +123,8 @@ class Coupon
     }
 
     /**
+     * Retrieve argument data from the resolver
+     *
      * @return array|null
      */
     public function getArgs(): ?array
@@ -124,6 +133,8 @@ class Coupon
     }
 
     /**
+     * Set argument data coming in the resolver
+     *
      * @param array|null $args
      * @return Coupon
      */
@@ -134,6 +145,8 @@ class Coupon
     }
 
     /**
+     * Retrieve values from the resolver context
+     *
      * @return ContextInterface|null
      */
     public function getContext(): ?ContextInterface
@@ -142,6 +155,8 @@ class Coupon
     }
 
     /**
+     * Set values from the resolver context
+     *
      * @param ContextInterface|null $context
      * @return $this
      */

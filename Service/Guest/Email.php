@@ -29,7 +29,7 @@ class Email
      * @param CartRepositoryInterface $cartRepository
      * @param Quote|null $currentCart
      * @param array|null $args
-     * @param $context
+     * @param ContextInterface|null $context
      */
     public function __construct(
         private readonly GetCartForUser $getCartForUser,
@@ -38,11 +38,13 @@ class Email
         private readonly CartRepositoryInterface $cartRepository,
         private ?Quote $currentCart,
         private ?array $args,
-        private $context
+        private ?ContextInterface $context
     ) {
     }
 
     /**
+     * Set the email address from the current cart to the cloned cart
+     *
      * @return array[]
      * @throws GraphQlInputException
      * @throws LocalizedException
@@ -87,6 +89,8 @@ class Email
     }
 
     /**
+     * Retrieve the email address from the current cart
+     *
      * @return string|null
      */
     private function getCartEmail(): ?string
@@ -95,6 +99,8 @@ class Email
     }
 
     /**
+     * Retrieve the current cart
+     *
      * @return Quote|null
      */
     public function getCurrentCart(): ?Quote
@@ -103,6 +109,8 @@ class Email
     }
 
     /**
+     * Set the current cart
+     *
      * @param Quote|null $currentCart
      * @return Email
      */
@@ -113,6 +121,8 @@ class Email
     }
 
     /**
+     * Retrieve argument data from the resolver
+     *
      * @return array|null
      */
     public function getArgs(): ?array
@@ -121,6 +131,8 @@ class Email
     }
 
     /**
+     * Set argument data coming in the resolver
+     *
      * @param array|null $args
      * @return Email
      */
@@ -131,6 +143,8 @@ class Email
     }
 
     /**
+     * Retrieve values from the resolver context
+     *
      * @return ContextInterface|null
      */
     public function getContext(): ?ContextInterface
@@ -139,6 +153,8 @@ class Email
     }
 
     /**
+     * Set values from the resolver context
+     *
      * @param ContextInterface|null $context
      * @return $this
      */

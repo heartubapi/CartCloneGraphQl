@@ -43,6 +43,8 @@ class CartItems
     }
 
     /**
+     * Retrieve all product data from the current cart
+     *
      * @return array
      * @throws LocalizedException
      */
@@ -102,6 +104,8 @@ class CartItems
     }
 
     /**
+     * Retrieve the current cart
+     *
      * @return Quote|null
      */
     public function getCurrentCart(): ?Quote
@@ -110,6 +114,8 @@ class CartItems
     }
 
     /**
+     * Set the current cart
+     *
      * @param Quote|null $currentCart
      * @return CartItems
      */
@@ -120,6 +126,8 @@ class CartItems
     }
 
     /**
+     * Retrieve argument data from the resolver
+     *
      * @return array|null
      */
     public function getArgs(): ?array
@@ -128,6 +136,8 @@ class CartItems
     }
 
     /**
+     * Set argument data coming in the resolver.
+     *
      * @param array|null $args
      * @return CartItems
      */
@@ -138,6 +148,8 @@ class CartItems
     }
 
     /**
+     * Check if pagination is set for the products in the cart
+     *
      * @return bool
      */
     public function isHasPagination(): bool
@@ -146,6 +158,8 @@ class CartItems
     }
 
     /**
+     * Set pagination for products in the cart
+     *
      * @param bool $hasPagination
      * @return CartItems
      */
@@ -156,6 +170,8 @@ class CartItems
     }
 
     /**
+     * Retrieve the pagination size
+     *
      * @return int
      */
     public function getPageSize(): int
@@ -164,6 +180,8 @@ class CartItems
     }
 
     /**
+     * Set the pagination size
+     *
      * @param int $pageSize
      * @return CartItems
      */
@@ -174,6 +192,8 @@ class CartItems
     }
 
     /**
+     * Retrieve the current pagination page
+     *
      * @return int
      */
     public function getCurrentPage(): int
@@ -182,6 +202,8 @@ class CartItems
     }
 
     /**
+     * Set the current pagination page
+     *
      * @param int $currentPage
      * @return CartItems
      */
@@ -192,6 +214,8 @@ class CartItems
     }
 
     /**
+     * Retrieve the sort order
+     *
      * @return array|null
      */
     public function getSort(): ?array
@@ -200,6 +224,8 @@ class CartItems
     }
 
     /**
+     * Set the sort order
+     *
      * @param array|null $sort
      * @return CartItems
      */
