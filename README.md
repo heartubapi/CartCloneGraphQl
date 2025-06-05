@@ -78,7 +78,7 @@ The `CartCloneGraphQl` module allows you to duplicate an existing guest cart, in
    php bin/magento module:status Heartub_CartCloneGraphQl
    ```
 
-For detailed information about module installation in Magento 2, see [Enable or disable modules](https://devdocs.magento.com/guides/v2.4/install-gde/install/cli/install-cli-subcommands-enable.html).
+For detailed information about module installation in Magento 2, see [Enable or disable modules](https://experienceleague.adobe.com/en/docs/commerce-operations/installation-guide/tutorials/manage-modules).
 
 ## 📖 Usage
 
@@ -210,10 +210,10 @@ Different Magento installations may require:
 Extension developers can interact with the `Heartub_CartCloneGraphQl` module:
 
 ### Plugin System
-For more information about the Magento extension mechanism, see [Magento plugins](https://devdocs.magento.com/guides/v2.4/extension-dev-guide/plugins.html).
+For more information about the Magento extension mechanism, see [Magento plugins](https://developer.adobe.com/commerce/php/development/components/plugins).
 
 ### Dependency Injection
-[The Magento dependency injection mechanism](https://devdocs.magento.com/guides/v2.4/extension-dev-guide/depend-inj.html) enables you to override the functionality of the `Heartub_CartCloneGraphQl` module.
+[The Magento dependency injection mechanism](https://developer.adobe.com/commerce/php/development/components/dependency-injection) enables you to override the functionality of the `Heartub_CartCloneGraphQl` module.
 
 ### Extension Points
 
